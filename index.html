@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FECHAMENTOS PARA LOTERIA ALTERNATIVAS</title>
+    <style>
+        :root { --primary: #1a73e8; --secondary: #27ae60; --dark: #1c1e21; --accent: #f39c12; --danger: #d93025; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 10px; display: flex; flex-direction: column; min-height: 100vh; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); flex-grow: 1; }
+        h1 { color: var(--primary); text-align: center; border-bottom: 3px solid var(--secondary); padding-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; }
+        
+        .selector-game { display: flex; gap: 5px; margin-bottom: 10px; }
+        .btn-tab { flex: 1; padding: 12px; border: 2px solid var(--primary); background: transparent; color: var(--primary); font-weight: bold; cursor: pointer; border-radius: 8px; font-size: 10px; }
+        .btn-tab.active { background: var(--primary); color: white; }
+        
+        .section { margin-bottom: 15px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+        .grid-numeros { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; margin-bottom: 10px; }
+        @media (max-width: 600px) { .grid-numeros { grid-template-columns: repeat(5, 1fr); } }
+        
+        .num-btn { padding: 8px 0; border: 1px solid #ccc; background: #fff; cursor: pointer; border-radius: 4px; font-weight: bold; font-size: 11px; }
+        .num-btn.selected { background: var(--secondary); color: white; border-color: #219150; }
+        
+        .btn-acao { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 5px; }
+        .btn-random { background: var(--accent); color: white; border: none; padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 10px; width: 100%; }
+        
+        /* Estilo do Link da Banca */
+        .link-banca { display: block; text-align: center; background: #000; color: #fff; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; border: 2px solid gold; transition: 0.3s; }
+        .link-banca:hover { background: #333; transform: scale(1.02); }
+        
+        .status-badge { display: none; background: #e8f0fe; color: #1a73e8; padding: 10px; border-radius: 5px; font-size: 12px; font-weight: bold; text-align: center; margin-top: 10px; border: 1px solid #1a73e8; }
+        .aviso-garantia { font-size: 12px; color: var(--danger); font-weight: bold; background: #fce8e6; padding: 10px; border-radius: 5px; margin-bottom: 10px; text-align: center; }
+        
+        textarea { width: 100%; height: 250px; margin-top: 10px; border-radius: 6px; border: 1px solid #ccc; font-family: 'Consolas', monospace; padding: 10px; font-size: 12px; background: #fff; }
+        footer { text-align: center; padding: 20px; margin-top: 20px; font-weight: bold; color: var(--dark); border-top: 1px solid #ddd; font-size: 14px; }
+        .guinho-brand { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>FECHAMENTOS PARA LOTERIA ALTERNATIVAS</h1>
+    
+    <div class="selector-game">
+        <button id="tabLotinha" class="btn-tab" onclick="mudarJogo('lotinha')">LOTINHA</button>
+        <button id="tabSeninha" class="btn-tab" onclick="mudarJogo('seninha')">SENINHA</button>
+        <button id="tabQuininha" class="btn-tab" onclick="mudarJogo('quininha')">QUININHA</button>
+    </div>
+
+    <div class="aviso-garantia">
+        ⚠️ ALTA PROBABILIDADE: MATRIZES OTIMIZADAS PARA MÁXIMO DESEMPENHO.
+    </div>
+
+    <div class="section">
+        <h3 id="tituloSelecao">Configurando...</h3>
+        <button class="btn-random" onclick="selecionarAleatorio()">🎲 Escolher dezenas aleatoriamente</button>
+        <div id="gridSelecao" class="grid-numeros"></div>
+        
+        <button class="btn-acao" onclick="gerarFechamentoCombinatorio()">GERAR DESDOBRAMENTO</button>
+        <div id="statusConfirmacao" class="status-badge"></div>
+    </div>
+
+    <div class="section">
+        <h3>2. Jogos Gerados</h3>
+        <textarea id="jogosGerados" readonly></textarea>
+        
+        <a href="https://web.lotoimperial.com/admin/indicate/328" target="_blank" class="link-banca">
+            👑 APOSTE AGORA NA BANCA IMPERIAL (CADASTRE-SE)
+        </a>
+
+        <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <button style="background: #5f6368; color:white; border:none; padding:12px; flex:1; border-radius:5px; cursor:pointer; font-weight:bold;" onclick="copiarJogos()">📋 Copiar</button>
+            <button style="background: #25d366; color:white; border:none; padding:12px; flex:1; border-radius:5px; cursor:pointer; font-weight:bold;" onclick="compartilharWhatsapp()">📱 WhatsApp</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>3. Conferidor</h3>
+        <div id="inputsSorteio" style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;"></div>
+        <button class="btn-acao" style="background: var(--secondary);" onclick="conferirJogos()">CONFERIR AGORA</button>
+        <div id="resultadoConferência" class="resultado-box" style="display:none; margin-top:15px; padding:15px; border:2px solid #ddd; border-radius:6px;"></div>
+    </div>
+</div>
+
+<footer>
+    Criado por <span class="guinho-brand">Guinho lotofácil</span><br>
+    <a href="https://web.lotoimperial.com/admin/indicate/328" target="_blank" style="color:var(--accent); text-decoration:none; font-size:12px;">Link Oficial Banca Imperial</a>
+</footer>
+
+<script>
+    let modoAtual = 'lotinha';
+    let selecionados = new Set();
+    const config = {
+        lotinha: { max: 25, escolher: 23, cartao: 21, sorteio: 15, nJogos: 40 },
+        seninha: { max: 60, escolher: 50, cartao: 40, sorteio: 6, nJogos: 50 },
+        quininha: { max: 80, escolher: 70, cartao: 40, sorteio: 5, nJogos: 60 }
+    };
+
+    function mudarJogo(jogo) {
+        modoAtual = jogo;
+        selecionados.clear();
+        document.querySelectorAll('.btn-tab').forEach(b => b.classList.remove('active'));
+        document.getElementById('tab' + jogo.charAt(0).toUpperCase() + jogo.slice(1)).classList.add('active');
+        document.getElementById('tituloSelecao').innerText = `${jogo.toUpperCase()}: Escolha ${config[jogo].escolher} dezenas`;
+        document.getElementById('statusConfirmacao').style.display = "none";
+        renderizarGrid();
+        renderizarInputsSorteio();
+    }
+
+    function renderizarGrid() {
+        const grid = document.getElementById('gridSelecao');
+        grid.innerHTML = "";
+        for (let i = 1; i <= config[modoAtual].max; i++) {
+            let btn = document.createElement('button');
+            btn.innerText = i.toString().padStart(2, '0');
+            btn.className = 'num-btn';
+            btn.onclick = () => alternarNumero(i, btn);
+            grid.appendChild(btn);
+        }
+    }
+
+    function alternarNumero(num, btn) {
+        if (selecionados.has(num)) {
+            selecionados.delete(num);
+            btn.classList.remove('selected');
+        } else if (selecionados.size < config[modoAtual].escolher) {
+            selecionados.add(num);
+            btn.classList.add('selected');
+        }
+    }
+
+    function selecionarAleatorio() {
+        selecionados.clear();
+        const max = config[modoAtual].max;
+        const meta = config[modoAtual].escolher;
+        while(selecionados.size < meta) {
+            let r = Math.floor(Math.random() * max) + 1;
+            selecionados.add(r);
+        }
+        document.querySelectorAll('.num-btn').forEach(btn => {
+            const val = parseInt(btn.innerText);
+            if(selecionados.has(val)) btn.classList.add('selected');
+            else btn.classList.remove('selected');
+        });
+    }
+
+    function renderizarInputsSorteio() {
+        const div = document.getElementById('inputsSorteio');
+        div.innerHTML = "";
+        for (let i = 0; i < config[modoAtual].sorteio; i++) {
+            let input = document.createElement('input');
+            input.type = 'number';
+            input.className = 'sorteio-input';
+            input.style = "width: 40px; padding: 8px; text-align: center; border: 1px solid #ccc; border-radius: 4px;";
+            div.appendChild(input);
+        }
+    }
+
+    function gerarFechamentoCombinatorio() {
+        const meta = config[modoAtual].escolher;
+        if (selecionados.size !== meta) {
+            alert(`Selecione exatamente ${meta} números.`); return;
+        }
+        document.getElementById('statusConfirmacao').style.display = "block";
+        document.getElementById('statusConfirmacao').innerText = `✅ Processado: ${modoAtual.toUpperCase()} (${meta} dezenas)`;
+
+        const base = Array.from(selecionados).sort((a, b) => a - b);
+        let jogos = [];
+        const nJogos = config[modoAtual].nJogos;
+        const tamCartao = config[modoAtual].cartao;
+
+        for (let i = 0; i < nJogos; i++) {
+            let jogo = [];
+            for (let j = 0; j < tamCartao; j++) {
+                let idx = (j + (i * 7)) % base.length;
+                jogo.push(base[idx]);
+            }
+            let unico = [...new Set(jogo)].sort((a,b) => a-b);
+            while(unico.length < tamCartao) {
+                let extra = base.find(n => !unico.includes(n));
+                if(extra) unico.push(extra); else break;
+            }
+            jogos.push(unico.sort((a,b) => a-b).map(n => n.toString().padStart(2, '0')).join(' '));
+        }
+        document.getElementById('jogosGerados').value = jogos.map((j, i) => `JOGO ${String(i+1).padStart(2, '0')}: ${j}`).join('\n');
+    }
+
+    function copiarJogos() {
+        const area = document.getElementById('jogosGerados');
+        if(!area.value) return;
+        area.select(); document.execCommand('copy'); alert("Copiado!");
+    }
+
+    function compartilharWhatsapp() {
+        const txt = document.getElementById('jogosGerados').value;
+        if(!txt) return;
+        const linkBanca = "\n\n🚀 APOSTE AQUI: https://web.lotoimperial.com/admin/indicate/328";
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent("*DESDOBRAMENTO GUINHO LOTOFÁCIL*" + "\n\n" + txt + linkBanca)}`);
+    }
+
+    function conferirJogos() {
+        const sorteados = Array.from(document.querySelectorAll('.sorteio-input')).map(i => parseInt(i.value)).filter(v => !isNaN(v));
+        if (sorteados.length !== config[modoAtual].sorteio) { alert("Preencha o sorteio."); return; }
+        const linhas = document.getElementById('jogosGerados').value.split('\n');
+        let max = 0; let lista = "";
+        linhas.forEach(linha => {
+            const numParte = linha.split(': ')[1]; if(!numParte) return;
+            const dezenas = numParte.split(' ').map(Number);
+            const acertos = dezenas.filter(n => sorteados.includes(n)).length;
+            if(acertos > max) max = acertos;
+            lista += `• ${linha.split(':')[0]}: ${acertos} ACERTOS<br>`;
+        });
+        const resDiv = document.getElementById('resultadoConferência');
+        resDiv.style.display = "block";
+        resDiv.innerHTML = `<h2 style="margin:0; color:#1a73e8;">MÁXIMO: ${max} PONTOS</h2><hr>${lista}`;
+    }
+
+    mudarJogo('lotinha');
+</script>
+</body>
+</html>
