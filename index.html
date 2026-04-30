@@ -3,37 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FECHAMENTOS PARA LOTERIA ALTERNATIVAS</title>
+    <title>FECHAMENTOS GUINHO - PREMIUM</title>
     <style>
-        :root { --primary: #1a73e8; --secondary: #27ae60; --dark: #1c1e21; --accent: #f39c12; --danger: #d93025; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 10px; display: flex; flex-direction: column; min-height: 100vh; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); flex-grow: 1; }
-        h1 { color: var(--primary); text-align: center; border-bottom: 3px solid var(--secondary); padding-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; }
+        /* TEMA VERMELHO AMARELADO - ESTILO RACING/ESTRATÉGICO */
+        :root { 
+            --primary: #CC0000; /* Vermelho Ferrari */
+            --secondary: #FFB800; /* Amarelo Ouro */
+            --dark: #1A1A1A; 
+            --accent: #FFD700; 
+            --danger: #8B0000;
+            --bg-gradient: linear-gradient(135deg, #FFF5E6 0%, #FFFAED 100%);
+        }
         
-        .selector-game { display: flex; gap: 5px; margin-bottom: 10px; }
-        .btn-tab { flex: 1; padding: 12px; border: 2px solid var(--primary); background: transparent; color: var(--primary); font-weight: bold; cursor: pointer; border-radius: 8px; font-size: 10px; }
-        .btn-tab.active { background: var(--primary); color: white; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-gradient); margin: 0; padding: 10px; display: flex; flex-direction: column; min-height: 100vh; color: var(--dark); }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(204, 0, 0, 0.15); border-top: 5px solid var(--primary); flex-grow: 1; }
         
-        .section { margin-bottom: 15px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+        h1 { color: var(--primary); text-align: center; border-bottom: 3px solid var(--secondary); padding-bottom: 10px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .selector-game { display: flex; gap: 8px; margin-bottom: 15px; }
+        .btn-tab { flex: 1; padding: 12px; border: 2px solid var(--primary); background: white; color: var(--primary); font-weight: bold; cursor: pointer; border-radius: 8px; font-size: 11px; transition: 0.3s; }
+        .btn-tab.active { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(204, 0, 0, 0.3); }
+        
+        .section { margin-bottom: 15px; padding: 15px; border: 1px solid #eee; border-radius: 8px; background: #FFFDF9; }
         .grid-numeros { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; margin-bottom: 10px; }
         @media (max-width: 600px) { .grid-numeros { grid-template-columns: repeat(5, 1fr); } }
         
-        .num-btn { padding: 8px 0; border: 1px solid #ccc; background: #fff; cursor: pointer; border-radius: 4px; font-weight: bold; font-size: 11px; }
-        .num-btn.selected { background: var(--secondary); color: white; border-color: #219150; }
+        .num-btn { padding: 8px 0; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; font-weight: bold; font-size: 11px; transition: 0.2s; }
+        .num-btn.selected { background: var(--primary); color: white; border-color: var(--danger); transform: scale(1.05); }
         
-        .btn-acao { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 5px; }
-        .btn-random { background: var(--accent); color: white; border: none; padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 10px; width: 100%; }
+        .btn-acao { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 5px; transition: 0.3s; }
+        .btn-acao:hover { background: var(--danger); filter: brightness(1.2); }
         
-        /* Estilo do Link da Banca */
-        .link-banca { display: block; text-align: center; background: #000; color: #fff; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; border: 2px solid gold; transition: 0.3s; }
-        .link-banca:hover { background: #333; transform: scale(1.02); }
+        .btn-random { background: var(--secondary); color: var(--dark); border: none; padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 10px; width: 100%; }
         
-        .status-badge { display: none; background: #e8f0fe; color: #1a73e8; padding: 10px; border-radius: 5px; font-size: 12px; font-weight: bold; text-align: center; margin-top: 10px; border: 1px solid #1a73e8; }
-        .aviso-garantia { font-size: 12px; color: var(--danger); font-weight: bold; background: #fce8e6; padding: 10px; border-radius: 5px; margin-bottom: 10px; text-align: center; }
+        .link-banca { display: block; text-align: center; background: var(--dark); color: var(--accent); padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; border: 2px solid var(--secondary); transition: 0.3s; }
+        .link-banca:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         
-        textarea { width: 100%; height: 250px; margin-top: 10px; border-radius: 6px; border: 1px solid #ccc; font-family: 'Consolas', monospace; padding: 10px; font-size: 12px; background: #fff; }
-        footer { text-align: center; padding: 20px; margin-top: 20px; font-weight: bold; color: var(--dark); border-top: 1px solid #ddd; font-size: 14px; }
-        .guinho-brand { color: var(--primary); }
+        .status-badge { display: none; background: #FFF4E5; color: var(--primary); padding: 10px; border-radius: 5px; font-size: 12px; font-weight: bold; text-align: center; margin-top: 10px; border: 1px solid var(--secondary); }
+        .aviso-garantia { font-size: 12px; color: var(--danger); font-weight: bold; background: #FFEBEB; padding: 10px; border-radius: 5px; margin-bottom: 10px; text-align: center; border-left: 5px solid var(--primary); }
+        
+        textarea { width: 100%; height: 280px; margin-top: 10px; border-radius: 6px; border: 1px solid #ddd; font-family: 'Consolas', monospace; padding: 10px; font-size: 12px; background: #fff; line-height: 1.4; }
+        footer { text-align: center; padding: 20px; margin-top: 20px; font-weight: bold; color: var(--dark); border-top: 1px solid #eee; font-size: 14px; }
+        .guinho-brand { color: var(--primary); text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -48,7 +59,7 @@
     </div>
 
     <div class="aviso-garantia">
-        ⚠️ ALTA PROBABILIDADE: MATRIZES OTIMIZADAS PARA MÁXIMO DESEMPENHO.
+        🏎️ ESTRATÉGIA GUINHO: MATRIZES DE ALTA COBERTURA SEM DUPLICIDADE.
     </div>
 
     <div class="section">
@@ -62,7 +73,7 @@
 
     <div class="section">
         <h3>2. Jogos Gerados</h3>
-        <textarea id="jogosGerados" readonly></textarea>
+        <textarea id="jogosGerados" readonly placeholder="Os jogos aparecerão aqui..."></textarea>
         
         <a href="https://web.lotoimperial.com/admin/indicate/328" target="_blank" class="link-banca">
             👑 APOSTE AGORA NA BANCA IMPERIAL (CADASTRE-SE)
@@ -77,14 +88,14 @@
     <div class="section">
         <h3>3. Conferidor</h3>
         <div id="inputsSorteio" style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;"></div>
-        <button class="btn-acao" style="background: var(--secondary);" onclick="conferirJogos()">CONFERIR AGORA</button>
-        <div id="resultadoConferência" class="resultado-box" style="display:none; margin-top:15px; padding:15px; border:2px solid #ddd; border-radius:6px;"></div>
+        <button class="btn-acao" style="background: #27ae60;" onclick="conferirJogos()">CONFERIR AGORA</button>
+        <div id="resultadoConferência" class="resultado-box" style="display:none; margin-top:15px; padding:15px; border:2px solid #ddd; border-radius:6px; background: white;"></div>
     </div>
 </div>
 
 <footer>
     Criado por <span class="guinho-brand">Guinho lotofácil</span><br>
-    <a href="https://web.lotoimperial.com/admin/indicate/328" target="_blank" style="color:var(--accent); text-decoration:none; font-size:12px;">Link Oficial Banca Imperial</a>
+    <a href="https://web.lotoimperial.com/admin/indicate/328" target="_blank" style="color:var(--primary); text-decoration:none; font-size:12px;">Link Oficial Banca Imperial</a>
 </footer>
 
 <script>
@@ -133,10 +144,13 @@
         selecionados.clear();
         const max = config[modoAtual].max;
         const meta = config[modoAtual].escolher;
-        while(selecionados.size < meta) {
-            let r = Math.floor(Math.random() * max) + 1;
-            selecionados.add(r);
+        const numeros = Array.from({length: max}, (_, i) => i + 1);
+        for (let i = numeros.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [numeros[i], numeros[j]] = [numeros[j], numeros[i]];
         }
+        numeros.slice(0, meta).forEach(n => selecionados.add(n));
+        
         document.querySelectorAll('.num-btn').forEach(btn => {
             const val = parseInt(btn.innerText);
             if(selecionados.has(val)) btn.classList.add('selected');
@@ -151,7 +165,8 @@
             let input = document.createElement('input');
             input.type = 'number';
             input.className = 'sorteio-input';
-            input.style = "width: 40px; padding: 8px; text-align: center; border: 1px solid #ccc; border-radius: 4px;";
+            input.placeholder = "00";
+            input.style = "width: 45px; padding: 10px; text-align: center; border: 2px solid #ddd; border-radius: 6px; font-weight: bold;";
             div.appendChild(input);
         }
     }
@@ -159,62 +174,89 @@
     function gerarFechamentoCombinatorio() {
         const meta = config[modoAtual].escolher;
         if (selecionados.size !== meta) {
-            alert(`Selecione exatamente ${meta} números.`); return;
+            alert(`Por favor, selecione exatamente ${meta} números para continuar.`); return;
         }
-        document.getElementById('statusConfirmacao').style.display = "block";
-        document.getElementById('statusConfirmacao').innerText = `✅ Processado: ${modoAtual.toUpperCase()} (${meta} dezenas)`;
 
         const base = Array.from(selecionados).sort((a, b) => a - b);
-        let jogos = [];
+        let jogosSet = new Set();
+        let jogosFinais = [];
         const nJogos = config[modoAtual].nJogos;
         const tamCartao = config[modoAtual].cartao;
 
-        for (let i = 0; i < nJogos; i++) {
+        // Lógica de "Salto Matemático" para garantir unicidade
+        let tentativa = 0;
+        while (jogosFinais.length < nJogos && tentativa < 1000) {
             let jogo = [];
+            // O segredo está no multiplicador de deslocamento (13 ou 17 são bons primos para evitar ciclos curtos)
+            let salto = (jogosFinais.length * 13) + tentativa; 
+            
             for (let j = 0; j < tamCartao; j++) {
-                let idx = (j + (i * 7)) % base.length;
+                let idx = (j + salto) % base.length;
                 jogo.push(base[idx]);
             }
-            let unico = [...new Set(jogo)].sort((a,b) => a-b);
-            while(unico.length < tamCartao) {
-                let extra = base.find(n => !unico.includes(n));
-                if(extra) unico.push(extra); else break;
+            
+            // Garante que os números dentro do jogo são únicos e ordena
+            let jogoUnico = [...new Set(jogo)].sort((a, b) => a - b);
+            
+            // Preenche se faltar números por algum motivo de colisão
+            let extraIdx = 0;
+            while (jogoUnico.length < tamCartao) {
+                if (!jogoUnico.includes(base[extraIdx])) jogoUnico.push(base[extraIdx]);
+                extraIdx++;
             }
-            jogos.push(unico.sort((a,b) => a-b).map(n => n.toString().padStart(2, '0')).join(' '));
+            jogoUnico.sort((a, b) => a - b);
+            
+            let jogoString = jogoUnico.map(n => n.toString().padStart(2, '0')).join(' ');
+            
+            if (!jogosSet.has(jogoString)) {
+                jogosSet.add(jogoString);
+                jogosFinais.push(jogoString);
+            } else {
+                tentativa++; // Se houver colisão, tenta um deslocamento diferente
+            }
         }
-        document.getElementById('jogosGerados').value = jogos.map((j, i) => `JOGO ${String(i+1).padStart(2, '0')}: ${j}`).join('\n');
+
+        document.getElementById('statusConfirmacao').style.display = "block";
+        document.getElementById('statusConfirmacao').innerText = `✅ SUCESSO: ${jogosFinais.length} JOGOS ÚNICOS GERADOS!`;
+        document.getElementById('jogosGerados').value = jogosFinais.map((j, i) => `JOGO ${String(i+1).padStart(2, '0')}: ${j}`).join('\n');
     }
 
     function copiarJogos() {
         const area = document.getElementById('jogosGerados');
         if(!area.value) return;
-        area.select(); document.execCommand('copy'); alert("Copiado!");
+        area.select(); document.execCommand('copy'); alert("Jogos copiados com sucesso!");
     }
 
     function compartilharWhatsapp() {
         const txt = document.getElementById('jogosGerados').value;
         if(!txt) return;
-        const linkBanca = "\n\n🚀 APOSTE AQUI: https://web.lotoimperial.com/admin/indicate/328";
+        const linkBanca = "\n\n🚀 APOSTE AQUI (BANCA IMPERIAL): https://web.lotoimperial.com/admin/indicate/328";
         window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent("*DESDOBRAMENTO GUINHO LOTOFÁCIL*" + "\n\n" + txt + linkBanca)}`);
     }
 
     function conferirJogos() {
         const sorteados = Array.from(document.querySelectorAll('.sorteio-input')).map(i => parseInt(i.value)).filter(v => !isNaN(v));
-        if (sorteados.length !== config[modoAtual].sorteio) { alert("Preencha o sorteio."); return; }
+        if (sorteados.length !== config[modoAtual].sorteio) { alert("Informe todos os números do sorteio para conferir."); return; }
+        
         const linhas = document.getElementById('jogosGerados').value.split('\n');
+        if(!linhas[0]) { alert("Gere os jogos primeiro!"); return; }
+
         let max = 0; let lista = "";
         linhas.forEach(linha => {
-            const numParte = linha.split(': ')[1]; if(!numParte) return;
-            const dezenas = numParte.split(' ').map(Number);
+            const partes = linha.split(': ');
+            if(!partes[1]) return;
+            const dezenas = partes[1].split(' ').map(Number);
             const acertos = dezenas.filter(n => sorteados.includes(n)).length;
             if(acertos > max) max = acertos;
-            lista += `• ${linha.split(':')[0]}: ${acertos} ACERTOS<br>`;
+            lista += `• ${partes[0]}: <strong>${acertos}</strong> ACERTOS<br>`;
         });
+        
         const resDiv = document.getElementById('resultadoConferência');
         resDiv.style.display = "block";
-        resDiv.innerHTML = `<h2 style="margin:0; color:#1a73e8;">MÁXIMO: ${max} PONTOS</h2><hr>${lista}`;
+        resDiv.innerHTML = `<h2 style="margin:0; color:var(--primary); font-size:1.1rem;">RESULTADO: MÁXIMO DE ${max} PONTOS</h2><hr style="border:1px solid #eee;">${lista}`;
     }
 
+    // Inicializa
     mudarJogo('lotinha');
 </script>
 </body>
