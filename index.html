@@ -45,6 +45,23 @@
         textarea { width: 100%; height: 280px; margin-top: 10px; border-radius: 6px; border: 1px solid #ddd; font-family: 'Consolas', monospace; padding: 10px; font-size: 12px; background: #fff; line-height: 1.4; }
         footer { text-align: center; padding: 20px; margin-top: 20px; font-weight: bold; color: var(--dark); border-top: 1px solid #eee; font-size: 14px; }
         .guinho-brand { color: var(--primary); text-transform: uppercase; }
+
+        /* --- NOVA ANIMAÇÃO E CLASSE PARA PISCAR --- */
+        @keyframes piscar_anim {
+            0% { opacity: 1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        .destaque-piscar {
+            animation: piscar_anim 1s infinite;
+            color: var(--danger); /* Cor de destaque para os 6 acertos */
+            font-weight: bold;
+            background-color: rgba(204, 0, 0, 0.1); /* Fundo suave */
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        /* ------------------------------------------ */
     </style>
 </head>
 <body>
@@ -248,7 +265,15 @@
             const dezenas = partes[1].split(' ').map(Number);
             const acertos = dezenas.filter(n => sorteados.includes(n)).length;
             if(acertos > max) max = acertos;
-            lista += `• ${partes[0]}: <strong>${acertos}</strong> ACERTOS<br>`;
+
+            // --- LÓGICA DE DESTAQUE ---
+            // Se tiver exatamente 6 acertos, envolvemos a linha em um span com a classe que pisca.
+            if (acertos === 6) {
+                lista += `<span class="destaque-piscar">• ${partes[0]}: <strong>${acertos}</strong> ACERTOS</span><br>`;
+            } else {
+                lista += `• ${partes[0]}: <strong>${acertos}</strong> ACERTOS<br>`;
+            }
+            // ---------------------------
         });
         
         const resDiv = document.getElementById('resultadoConferência');
